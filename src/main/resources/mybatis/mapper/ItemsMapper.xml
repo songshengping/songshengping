@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.song.jeremy.mapper.ItemsMapper">
+  <resultMap id="BaseResultMap" type="com.song.jeremy.dbmodel.Items">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="item_name" jdbcType="VARCHAR" property="itemName" />
+    <result column="cat_id" jdbcType="INTEGER" property="catId" />
+    <result column="root_cat_id" jdbcType="INTEGER" property="rootCatId" />
+    <result column="sell_counts" jdbcType="INTEGER" property="sellCounts" />
+    <result column="on_off_status" jdbcType="INTEGER" property="onOffStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.song.jeremy.dbmodel.Items">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, item_name, cat_id, root_cat_id, sell_counts, on_off_status, create_time, update_time
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from items
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from items
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.song.jeremy.dbmodel.Items">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+      useGeneratedKeys
+    </selectKey>
+    insert into items (id, item_name, cat_id, 
+      root_cat_id, sell_counts, on_off_status, 
+      create_time, update_time, content
+      )
+    values (#{id,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, #{catId,jdbcType=INTEGER}, 
+      #{rootCatId,jdbcType=INTEGER}, #{sellCounts,jdbcType=INTEGER}, #{onOffStatus,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.song.jeremy.dbmodel.Items">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+      useGeneratedKeys
+    </selectKey>
+    insert into items
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="itemName != null">
+        item_name,
+      </if>
+      <if test="catId != null">
+        cat_id,
+      </if>
+      <if test="rootCatId != null">
+        root_cat_id,
+      </if>
+      <if test="sellCounts != null">
+        sell_counts,
+      </if>
+      <if test="onOffStatus != null">
+        on_off_status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=VARCHAR},
+      <if test="itemName != null">
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="catId != null">
+        #{catId,jdbcType=INTEGER},
+      </if>
+      <if test="rootCatId != null">
+        #{rootCatId,jdbcType=INTEGER},
+      </if>
+      <if test="sellCounts != null">
+        #{sellCounts,jdbcType=INTEGER},
+      </if>
+      <if test="onOffStatus != null">
+        #{onOffStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.song.jeremy.dbmodel.Items">
+    update items
+    <set>
+      <if test="itemName != null">
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="catId != null">
+        cat_id = #{catId,jdbcType=INTEGER},
+      </if>
+      <if test="rootCatId != null">
+        root_cat_id = #{rootCatId,jdbcType=INTEGER},
+      </if>
+      <if test="sellCounts != null">
+        sell_counts = #{sellCounts,jdbcType=INTEGER},
+      </if>
+      <if test="onOffStatus != null">
+        on_off_status = #{onOffStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.song.jeremy.dbmodel.Items">
+    update items
+    set item_name = #{itemName,jdbcType=VARCHAR},
+      cat_id = #{catId,jdbcType=INTEGER},
+      root_cat_id = #{rootCatId,jdbcType=INTEGER},
+      sell_counts = #{sellCounts,jdbcType=INTEGER},
+      on_off_status = #{onOffStatus,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.song.jeremy.dbmodel.Items">
+    update items
+    set item_name = #{itemName,jdbcType=VARCHAR},
+      cat_id = #{catId,jdbcType=INTEGER},
+      root_cat_id = #{rootCatId,jdbcType=INTEGER},
+      sell_counts = #{sellCounts,jdbcType=INTEGER},
+      on_off_status = #{onOffStatus,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
