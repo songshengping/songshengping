@@ -2,6 +2,8 @@ package com.song.jeremy.mapper;
 
 import com.song.jeremy.dbmodel.Carousel;
 
+import java.util.List;
+
 public interface CarouselMapper {
     int deleteByPrimaryKey(String id);
 
@@ -14,4 +16,6 @@ public interface CarouselMapper {
     int updateByPrimaryKeySelective(Carousel record);
 
     int updateByPrimaryKey(Carousel record);
+
+    List<Carousel> findAll();
 }

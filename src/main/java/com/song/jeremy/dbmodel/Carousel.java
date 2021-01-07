@@ -1,10 +1,16 @@
 package com.song.jeremy.dbmodel;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * 轮播图
+ */
 public class Carousel implements Serializable {
-    private String id;
+    private Integer id;
 
     private String imageUrl;
 
@@ -24,14 +30,12 @@ public class Carousel implements Serializable {
 
     private Date updateTime;
 
-    private static final long serialVersionUID = 1L;
-
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getImageUrl() {
@@ -39,7 +43,7 @@ public class Carousel implements Serializable {
     }
 
     public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl == null ? null : imageUrl.trim();
+        this.imageUrl = imageUrl;
     }
 
     public String getBackgroundColor() {
@@ -47,7 +51,7 @@ public class Carousel implements Serializable {
     }
 
     public void setBackgroundColor(String backgroundColor) {
-        this.backgroundColor = backgroundColor == null ? null : backgroundColor.trim();
+        this.backgroundColor = backgroundColor;
     }
 
     public String getItemId() {
@@ -55,7 +59,7 @@ public class Carousel implements Serializable {
     }
 
     public void setItemId(String itemId) {
-        this.itemId = itemId == null ? null : itemId.trim();
+        this.itemId = itemId;
     }
 
     public String getCatId() {
@@ -63,7 +67,7 @@ public class Carousel implements Serializable {
     }
 
     public void setCatId(String catId) {
-        this.catId = catId == null ? null : catId.trim();
+        this.catId = catId;
     }
 
     public Integer getType() {
@@ -104,26 +108,5 @@ public class Carousel implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", imageUrl=").append(imageUrl);
-        sb.append(", backgroundColor=").append(backgroundColor);
-        sb.append(", itemId=").append(itemId);
-        sb.append(", catId=").append(catId);
-        sb.append(", type=").append(type);
-        sb.append(", sort=").append(sort);
-        sb.append(", isShow=").append(isShow);
-        sb.append(", createTime=").append(createTime);
-        sb.append(", updateTime=").append(updateTime);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
     }
 }
