@@ -28,6 +28,15 @@
     from items
     where id = #{id,jdbcType=VARCHAR}
   </select>
+
+  <select id="findItemsByCatId" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from items
+    where root_cat_id = #{rootCatId,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from items
     where id = #{id,jdbcType=VARCHAR}

@@ -2,6 +2,8 @@ package com.song.jeremy.mapper;
 
 import com.song.jeremy.dbmodel.Items;
 
+import java.util.List;
+
 public interface ItemsMapper {
     int deleteByPrimaryKey(String id);
 
@@ -16,4 +18,6 @@ public interface ItemsMapper {
     int updateByPrimaryKeyWithBLOBs(Items record);
 
     int updateByPrimaryKey(Items record);
+
+    List<Items> findItemsByCatId(Integer rootCatId);
 }
