@@ -1,5 +1,6 @@
 package com.song.jeremy.service;
 
+import com.github.pagehelper.PageHelper;
 import com.song.jeremy.dbmodel.Category;
 import com.song.jeremy.dbmodel.Items;
 import com.song.jeremy.mapper.CategoryMapper;
@@ -29,6 +30,7 @@ public class ItemService {
     public CategoryItemDTO getIndexSixItems(Integer rootCatId) {
         Category category = categoryMapper.selectByPrimaryKey(rootCatId);
         CategoryItemDTO categoryItemDTO = CategoryMapStruct.INSTANCE.toResCategoryItem(category);
+        PageHelper.startPage(1,6);
         List<Items> itemsList = itemsMapper.findItemsByCatId(rootCatId);
         List<ItemsDTO> itemsDTOList = ItemsMapStruct.INSTANCE.toResItemsList(itemsList);
         categoryItemDTO.setItemList(itemsDTOList);

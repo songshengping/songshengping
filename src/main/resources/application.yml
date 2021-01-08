@@ -45,3 +45,9 @@ spring:
     connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
 mybatis:
   mapper-locations: classpath*:mybatis/mapper/*.xml
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
