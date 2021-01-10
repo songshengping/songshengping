@@ -21,6 +21,38 @@
     from items_spec
     where id = #{id,jdbcType=VARCHAR}
   </select>
+
+  <select id="findItemsSpecByModel" parameterType="com.song.jeremy.dbmodel.ItemsSpec" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from items_spec
+    where 1 = 1
+    <if test="itemId != null">
+      and item_id = #{itemId,jdbcType=VARCHAR}
+    </if>
+    <if test="name != null">
+      and name = #{name,jdbcType=VARCHAR}
+    </if>
+    <if test="stock != null">
+      and stock = #{stock,jdbcType=INTEGER}
+    </if>
+    <if test="discounts != null">
+      and discounts = #{discounts,jdbcType=DECIMAL}
+    </if>
+    <if test="priceDiscount != null">
+      and price_discount = #{priceDiscount,jdbcType=INTEGER}
+    </if>
+    <if test="priceNormal != null">
+      and price_normal = #{priceNormal,jdbcType=INTEGER}
+    </if>
+    <if test="createTime != null">
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateTime != null">
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from items_spec
     where id = #{id,jdbcType=VARCHAR}

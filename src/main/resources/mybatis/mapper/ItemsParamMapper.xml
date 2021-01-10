@@ -26,6 +26,50 @@
     from items_param
     where id = #{id,jdbcType=VARCHAR}
   </select>
+
+  <select id="findItemsParamByModel" parameterType="com.song.jeremy.dbmodel.ItemsParam" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from items_param
+    where 1 = 1
+    <if test="itemId != null">
+      and item_id = #{itemId,jdbcType=VARCHAR}
+    </if>
+    <if test="producPlace != null">
+      and produc_place = #{producPlace,jdbcType=VARCHAR}
+    </if>
+    <if test="footPeriod != null">
+      and foot_period = #{footPeriod,jdbcType=VARCHAR}
+    </if>
+    <if test="brand != null">
+      and brand = #{brand,jdbcType=VARCHAR}
+    </if>
+    <if test="factoryName != null">
+      and factory_name = #{factoryName,jdbcType=VARCHAR}
+    </if>
+    <if test="factoryAddress != null">
+      and factory_address = #{factoryAddress,jdbcType=VARCHAR}
+    </if>
+    <if test="packagingMethod != null">
+      and packaging_method = #{packagingMethod,jdbcType=VARCHAR}
+    </if>
+    <if test="weight != null">
+      and weight = #{weight,jdbcType=VARCHAR}
+    </if>
+    <if test="storageMethod != null">
+      and storage_method = #{storageMethod,jdbcType=VARCHAR}
+    </if>
+    <if test="eatMethod != null">
+      and eat_method = #{eatMethod,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime != null">
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateTime != null">
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from items_param
     where id = #{id,jdbcType=VARCHAR}

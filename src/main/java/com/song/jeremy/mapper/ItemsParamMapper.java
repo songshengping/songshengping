@@ -2,6 +2,8 @@ package com.song.jeremy.mapper;
 
 import com.song.jeremy.dbmodel.ItemsParam;
 
+import java.util.List;
+
 public interface ItemsParamMapper {
     int deleteByPrimaryKey(String id);
 
@@ -14,4 +16,6 @@ public interface ItemsParamMapper {
     int updateByPrimaryKeySelective(ItemsParam record);
 
     int updateByPrimaryKey(ItemsParam record);
+
+    List<ItemsParam> findItemsParamByModel(ItemsParam record);
 }
